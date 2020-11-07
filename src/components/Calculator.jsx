@@ -6,12 +6,32 @@ import Display from './Display';
 const Calculator = () => {
     const [currentValue, setCurrentValue] = useState('0');
 
+    const handleClearClick = () => {
+        setCurrentValue('0');
+    };
+
+    const handleDecimalClick = () => {
+        if (currentValue.indexOf('.') === -1) {
+            setCurrentValue(currentValue + '.');
+        }
+    };
+
+    const handleNumberClick = (number) => {
+        if (currentValue === '0') {
+            setCurrentValue(number.toString());
+        } else {
+            setCurrentValue(currentValue + number.toString());
+        }
+    };
+
     return (
         <div className="box has-background-light">
             <Display>{currentValue}</Display>
             <div className="columns is-mobile">
                 <div className="column is-one-quarter">
-                    <Button prominent>AC</Button>
+                    <Button prominent onClick={handleClearClick}>
+                        AC
+                    </Button>
                 </div>
                 <div className="column is-one-quarter">
                     <Button prominent>&plusmn;</Button>
@@ -25,13 +45,13 @@ const Calculator = () => {
             </div>
             <div className="columns is-mobile">
                 <div className="column is-one-quarter">
-                    <Button>7</Button>
+                    <Button onClick={handleNumberClick}>7</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>8</Button>
+                    <Button onClick={handleNumberClick}>8</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>9</Button>
+                    <Button onClick={handleNumberClick}>9</Button>
                 </div>
                 <div className="column is-one-quarter">
                     <Button operator>&times;</Button>
@@ -39,13 +59,13 @@ const Calculator = () => {
             </div>
             <div className="columns is-mobile">
                 <div className="column is-one-quarter">
-                    <Button>4</Button>
+                    <Button onClick={handleNumberClick}>4</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>5</Button>
+                    <Button onClick={handleNumberClick}>5</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>6</Button>
+                    <Button onClick={handleNumberClick}>6</Button>
                 </div>
                 <div className="column is-one-quarter">
                     <Button operator>&minus;</Button>
@@ -53,13 +73,13 @@ const Calculator = () => {
             </div>
             <div className="columns is-mobile">
                 <div className="column is-one-quarter">
-                    <Button>1</Button>
+                    <Button onClick={handleNumberClick}>1</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>2</Button>
+                    <Button onClick={handleNumberClick}>2</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>3</Button>
+                    <Button onClick={handleNumberClick}>3</Button>
                 </div>
                 <div className="column is-one-quarter">
                     <Button operator>+</Button>
@@ -67,10 +87,10 @@ const Calculator = () => {
             </div>
             <div className="columns is-mobile">
                 <div className="column is-one-half">
-                    <Button>0</Button>
+                    <Button onClick={handleNumberClick}>0</Button>
                 </div>
                 <div className="column is-one-quarter">
-                    <Button>.</Button>
+                    <Button onClick={handleDecimalClick}>.</Button>
                 </div>
                 <div className="column is-one-quarter">
                     <Button operator>=</Button>
